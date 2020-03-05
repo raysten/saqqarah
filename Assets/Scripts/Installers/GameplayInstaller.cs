@@ -15,9 +15,4 @@ public class GameplayInstaller : MonoInstaller
 	{
 		Container.BindInterfacesAndSelfTo<Camera>().FromInstance(_camera).AsSingle();
 	}
-
-	private void InstallPlayer()
-	{
-		//Container.BindInterfacesAndSelfTo
-	}
 }

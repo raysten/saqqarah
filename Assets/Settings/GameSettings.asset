@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: GameSettings
   m_EditorClassIdentifier: Assembly-CSharp::GameSettings
+  _playerMovement:
+    forwardSpeed: 4
+    sideSpeed: 6.5
   _playerRotation:
-    _speed: 6
+    speed: 5

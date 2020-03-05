@@ -5,7 +5,20 @@ public class PlayerInstaller : MonoInstaller
 {
 	public override void InstallBindings()
 	{
-		Container.BindInterfacesAndSelfTo<PlayerRotation>().AsSingle();
+		InstallComponents();
+		InstallModules();
+	}
+
+	private void InstallComponents()
+	{
 		Container.BindInterfacesAndSelfTo<Transform>().FromComponentOnRoot().AsSingle();
+		Container.BindInterfacesAndSelfTo<CharacterController>().FromComponentOnRoot().AsSingle();
+	}
+
+	private void InstallModules()
+	{
+		Container.BindInterfacesAndSelfTo<PlayerRotation>().AsSingle();
+		Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle();
+		Container.BindInterfacesAndSelfTo<PlayerInput>().AsSingle();
 	}
 }

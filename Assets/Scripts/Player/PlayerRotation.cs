@@ -23,12 +23,12 @@ public class PlayerRotation : ITickable
 			_transform.rotation.eulerAngles.z
 		);
 		// TODO: use correct lerping.
-		_transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, Time.deltaTime * _settings._speed);
+		_transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, Time.deltaTime * _settings.speed);
 	}
 
 	[Serializable]
 	public class Settings
 	{
-		public float _speed;
+		public float speed = 5f;
 	}
 }
