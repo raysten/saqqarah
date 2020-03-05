@@ -17,3 +17,11 @@ MonoBehaviour:
     sideSpeed: 6.5
   _playerRotation:
     speed: 5
+  _targeter:
+    leftClickDetectionLayer:
+      serializedVersion: 2
+      m_Bits: 256
+    wallLayer:
+      serializedVersion: 2
+      m_Bits: 512
+    raycastDistance: 100

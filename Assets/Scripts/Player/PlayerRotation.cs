@@ -8,6 +8,7 @@ public class PlayerRotation : ITickable
 	private Transform _transform;
 	private Settings _settings;
 
+	// TODO: remove settings if not needed eventually.
 	public PlayerRotation(Camera cam, Transform transform, Settings settings)
 	{
 		_cam = cam;
@@ -17,14 +18,11 @@ public class PlayerRotation : ITickable
 
 	public void Tick()
 	{
-		Quaternion targetRotation = Quaternion.Euler(
+		_transform.rotation = Quaternion.Euler(
 			_transform.rotation.eulerAngles.x,
 			_cam.transform.rotation.eulerAngles.y,
 			_transform.rotation.eulerAngles.z
 		);
-		// TODO: use correct lerping.
-		//_transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, Time.deltaTime * _settings.speed);
-		_transform.rotation = _cam.transform.rotation;
 	}
 
 	[Serializable]

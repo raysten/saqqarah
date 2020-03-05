@@ -20,5 +20,6 @@ public class PlayerInstaller : MonoInstaller
 		Container.BindInterfacesAndSelfTo<PlayerRotation>().AsSingle();
 		Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle();
 		Container.BindInterfacesAndSelfTo<PlayerInput>().AsSingle();
+		Container.BindInterfacesAndSelfTo<PlayerTargeter>().AsSingle();
 	}
 }
