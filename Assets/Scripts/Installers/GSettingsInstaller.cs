@@ -1,8 +1,8 @@
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "GSettingsInstaller", menuName = "Installers/GSettingsInstaller")]
-public class GSettingsInstaller : ScriptableObjectInstaller<GSettingsInstaller>
+[CreateAssetMenu(fileName = "GameSettingsInstaller", menuName = "Installers/GameSettingsInstaller")]
+public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
 {
 	[SerializeField]
 	private PlayerMovement.Settings _playerMovement;

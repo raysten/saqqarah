@@ -19,6 +19,7 @@ public class PlayerTargeter : IInitializable, IDisposable
 	public void Initialize()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
 		_input.mouseLeftButtonPressed += OnLeftClick;
 	}
 

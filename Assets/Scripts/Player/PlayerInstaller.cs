@@ -17,7 +17,7 @@ public class PlayerInstaller : MonoInstaller
 
 	private void InstallModules()
 	{
-		Container.BindInterfacesAndSelfTo<PlayerRotation>().AsSingle();
+		Container.BindInterfacesAndSelfTo<PlayerLookCamera>().AsSingle();
 		Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle();
 		Container.BindInterfacesAndSelfTo<PlayerInput>().AsSingle();
 		Container.BindInterfacesAndSelfTo<PlayerTargeter>().AsSingle();
