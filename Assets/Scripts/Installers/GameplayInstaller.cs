@@ -26,7 +26,7 @@ public class GameplayInstaller : MonoInstaller
 		Container.BindInterfacesAndSelfTo<Transform>().FromComponentOn(_player).AsSingle();
 		Container.BindInterfacesAndSelfTo<CharacterController>().FromComponentOn(_player).AsSingle();
 
-		Container.BindInterfacesAndSelfTo<PlayerRotation>().AsSingle();
+		Container.BindInterfacesAndSelfTo<PlayerLookCamera>().AsSingle();
 		Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle();
 		Container.BindInterfacesAndSelfTo<PlayerInput>().AsSingle();
 		Container.BindInterfacesAndSelfTo<PlayerTargeter>().AsSingle();

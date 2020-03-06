@@ -8,6 +8,8 @@ public class PlayerInput : ITickable
 
 	public float Horizontal => Input.GetAxis("Horizontal");
 	public float Vertical => Input.GetAxis("Vertical");
+	public float MouseX => Input.GetAxis("Mouse X");
+	public float MouseY => Input.GetAxis("Mouse Y");
 	public bool LeftMouseButtonDown { get; private set; }
 
 	public void Tick()

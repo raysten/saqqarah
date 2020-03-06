@@ -7,14 +7,14 @@ public class GSettingsInstaller : ScriptableObjectInstaller<GSettingsInstaller>
 	[SerializeField]
 	private PlayerMovement.Settings _playerMovement;
 	[SerializeField]
-	private PlayerRotation.Settings _playerRotation;
+	private PlayerLookCamera.Settings _playerCamera;
 	[SerializeField]
 	private PlayerTargeter.Settings _targeter;
 
 	public override void InstallBindings()
     {
 		Container.BindInstance(_playerMovement).AsSingle();
-		Container.BindInstance(_playerRotation).AsSingle();
+		Container.BindInstance(_playerCamera).AsSingle();
 		Container.BindInstance(_targeter).AsSingle();
 	}
 }
