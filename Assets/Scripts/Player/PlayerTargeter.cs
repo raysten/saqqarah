@@ -18,7 +18,9 @@ public class PlayerTargeter : IInitializable, IDisposable
 
 	public void Initialize()
 	{
+#if !UNITY_EDITOR
 		Cursor.lockState = CursorLockMode.Locked;
+#endif
 		Cursor.visible = false;
 		_input.mouseLeftButtonPressed += OnLeftClick;
 	}
@@ -39,7 +41,8 @@ public class PlayerTargeter : IInitializable, IDisposable
 			_settings.leftClickDetectionLayer)
 		)
 		{
-			Debug.Log($"Hit: {hitInfo.transform.name}");
+			ScarabNode node = hitInfo.transform.GetComponent<ScarabNode>();
+			node?.Mark();
 		}
 	}
 
