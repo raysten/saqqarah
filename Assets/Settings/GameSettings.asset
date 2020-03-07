@@ -25,4 +25,5 @@ MonoBehaviour:
       m_Bits: 256
     raycastDistance: 100
   _edgeView:
-    animationSpeed: 3
+    animationSpeed: 6
+    standardNodeDistanceSquared: 3

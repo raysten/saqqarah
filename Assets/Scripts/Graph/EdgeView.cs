@@ -15,6 +15,7 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 	private Vector3 _endPosition;
 	private Vector3 _direction;
 	private float _minVertexDistanceSqaured = 0.1f;
+	private float _nodeDistanceSquared;
 
 	public void Dispose()
 	{
@@ -35,6 +36,7 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 		_lineRend.SetPosition(0, startPosition);
 		_lineRend.SetPosition(1, startPosition);
 		_direction = (endPosition - startPosition).normalized;
+		_nodeDistanceSquared = (endPosition - startPosition).sqrMagnitude;
 		_startPosition = startPosition;
 		_endPosition = endPosition;
 	}
@@ -45,7 +47,9 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 
 		if ((currentEndPosition - _endPosition).sqrMagnitude > _minVertexDistanceSqaured)
 		{
-			_lineRend.SetPosition(1, currentEndPosition + _direction * Time.deltaTime * _settings.animationSpeed);
+			_lineRend.SetPosition(1,
+				currentEndPosition + _direction * Time.deltaTime *
+				_settings.animationSpeed * _nodeDistanceSquared / _settings.standardNodeDistanceSquared);
 		}
 		else
 		{
@@ -62,5 +66,6 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 	public class Settings
 	{
 		public float animationSpeed = 2f;
+		public float standardNodeDistanceSquared = 3f;
 	}
 }
