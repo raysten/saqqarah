@@ -96,7 +96,8 @@ public class PuzzleController : IInitializable, IDisposable
 				_drawer.CancelLast();
 				_lastMarkedEdge.Reset();
 				_lastClickedNode.Reset();
-				_lastClickedNode = _preLastClickedNode;
+				//_lastClickedNode = _preLastClickedNode;
+				SetLastClickedNode(_preLastClickedNode);
 				_lastMarkedEdge = _preLastMarkedEdge;
 				_usedCancel = true;
 			}
@@ -129,33 +130,31 @@ public class PuzzleController : IInitializable, IDisposable
 
 	private void VisitNode(ScarabNode node)
 	{
-		if (_lastClickedNode == null)
+		if (_lastClickedNode != null)
 		{
-			ColorNode(node, true);
-		}
-		else
-		{
-			ColorNode(node);
+			//ColorNode(node, true);
 			ScarabEdge edge = node.GetEdgeTo(_lastClickedNode);
 			edge.IsMarked = true;
 			_preLastMarkedEdge = _lastMarkedEdge;
 			_lastMarkedEdge = edge;
 			_drawer.DrawEdge(_lastClickedNode, node);
-			_preLastClickedNode = _lastClickedNode;
+			//_preLastClickedNode = _lastClickedNode;
+			SetPreLastClickedNode(_lastClickedNode);
 		}
 
 		node.Visited = true;
-		_lastClickedNode = node;
+		//_lastClickedNode = node;
+		SetLastClickedNode(node);
 		_usedCancel = false;
 	}
 
-	private void ColorNode(ScarabNode node, bool isFirst = false)
-	{
-		if (node.Visited == false)
-		{
-			node.View.Mark(isFirst);
-		}
-	}
+	//private void ColorNode(ScarabNode node, bool isFirst = false)
+	//{
+	//	if (node.Visited == false)
+	//	{
+	//		node.View.Mark(isFirst);
+	//	}
+	//}
 
 	private void CheckWinCondition()
 	{
@@ -173,6 +172,18 @@ public class PuzzleController : IInitializable, IDisposable
 				HandleLoss();
 			}
 		}
+	}
+
+	private void SetLastClickedNode(ScarabNode node)
+	{
+		_lastClickedNode = node;
+		_lastClickedNode.View.Mark(true);
+	}
+
+	private void SetPreLastClickedNode(ScarabNode node)
+	{
+		_preLastClickedNode = node;
+		_preLastClickedNode.View.Mark();
 	}
 
 	private void HandleLoss()

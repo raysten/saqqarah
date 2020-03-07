@@ -128,7 +128,7 @@ MonoBehaviour:
     type: 3}
   _markedSprite: {fileID: 3162544878287229053, guid: 8a29f259b22ffb8409ab9312b54c2858,
     type: 3}
-  _firstMarkedSprite: {fileID: -3256550070644474676, guid: 8a29f259b22ffb8409ab9312b54c2858,
+  _lastMarkedSprite: {fileID: -3256550070644474676, guid: 8a29f259b22ffb8409ab9312b54c2858,
     type: 3}
 --- !u!95 &780405040752240029
 Animator:
