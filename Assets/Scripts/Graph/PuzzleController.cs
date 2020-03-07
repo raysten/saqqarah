@@ -7,14 +7,16 @@ public class PuzzleController : IInitializable, IDisposable
 {
 	private List<ScarabNode> _nodes;
 	private EdgeDrawer _drawer;
+	private ParticleSystem _winVfx;
 
 	private List<ScarabEdge> _edges = new List<ScarabEdge>();
 	private ScarabNode _lastClickedNode = null;
 
-	public PuzzleController(List<ScarabNode> nodes, EdgeDrawer drawer)
+	public PuzzleController(List<ScarabNode> nodes, EdgeDrawer drawer, ParticleSystem winVfx)
 	{
 		_nodes = nodes;
 		_drawer = drawer;
+		_winVfx = winVfx;
 	}
 
 	#region Initialization and Disposal
@@ -122,7 +124,7 @@ public class PuzzleController : IInitializable, IDisposable
 			// TODO:
 			if (anyUnmarkedEdge == null)
 			{
-				Debug.Log("WIN");
+				_winVfx.Play();
 			}
 			else
 			{
