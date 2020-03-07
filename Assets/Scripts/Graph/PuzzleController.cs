@@ -52,6 +52,7 @@ public class PuzzleController : IInitializable, IDisposable
 			VisitNode(node);
 		}
 
+		// TODO: Add feedback when wrong click performed.
 		// TODO: Check win condition.
 	}
 
