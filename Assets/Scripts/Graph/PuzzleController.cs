@@ -8,7 +8,7 @@ public class PuzzleController : IInitializable, IDisposable
 	private List<ScarabNode> _nodes;
 	private EdgeDrawer _drawer;
 
-	private List<ScarabNode> _markedNodes = new List<ScarabNode>();
+	private List<ScarabEdge> _edges = new List<ScarabEdge>();
 	private ScarabNode _lastClickedNode = null;
 
 	public PuzzleController(List<ScarabNode> nodes, EdgeDrawer drawer)
@@ -20,6 +20,7 @@ public class PuzzleController : IInitializable, IDisposable
 	#region Initialization and Disposal
 	public void Initialize()
 	{
+		CreateEdges();
 		SubscribeClick();
 	}
 
@@ -45,18 +46,26 @@ public class PuzzleController : IInitializable, IDisposable
 	}
 	#endregion
 
+	private void CreateEdges()
+	{
+		foreach (ScarabNode node in _nodes)
+		{
+			_edges.AddRange(node.AssignEdges());
+		}
+	}
+
 	private void OnNodeClicked(ScarabNode node)
 	{
 		if (IsValidClick(node))
 		{
 			VisitNode(node);
+			CheckWinCondition();
 		}
 		else
 		{
 			node.View.Shake();
 		}
 
-		// TODO: Check win condition.
 	}
 
 	private bool IsValidClick(ScarabNode node)
@@ -101,6 +110,24 @@ public class PuzzleController : IInitializable, IDisposable
 		if (node.Visited == false)
 		{
 			node.View.Mark(isFirst);
+		}
+	}
+
+	private void CheckWinCondition()
+	{
+		if (_lastClickedNode.HasUnmarkedEdge() == false)
+		{
+			ScarabEdge anyUnmarkedEdge = _edges.Find(x => x.IsMarked == false);
+
+			// TODO:
+			if (anyUnmarkedEdge == null)
+			{
+				Debug.Log("WIN");
+			}
+			else
+			{
+				Debug.Log("LOSS");
+			}
 		}
 	}
 }

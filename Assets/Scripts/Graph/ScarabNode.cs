@@ -15,25 +15,10 @@ public class ScarabNode : MonoBehaviour
 	public ScarabView View { get; private set; }
 	public bool Visited { get; set; }
 
-	public ScarabEdge GetEdgeTo(ScarabNode neighbour)
+	public List<ScarabEdge> AssignEdges()
 	{
-		return Edges.Find(x => x.HasNodes(neighbour, this));
-	}
+		List<ScarabEdge> newEdges = new List<ScarabEdge>();
 
-	public void OnClick()
-	{
-		nodeClicked?.Invoke(this);
-	}
-
-	private void OnEnable()
-	{
-		Edges.Clear();
-		AssignEdges();
-		View = GetComponent<ScarabView>();
-	}
-
-	private void AssignEdges()
-	{
 		foreach (ScarabNode neighbour in _neighbours)
 		{
 			ScarabEdge edgeFromCurrentNeighbourToThis = neighbour.GetEdgeTo(this);
@@ -44,8 +29,39 @@ public class ScarabNode : MonoBehaviour
 			}
 			else
 			{
-				Edges.Add(new ScarabEdge(this, neighbour));
+				ScarabEdge newEdge = new ScarabEdge(this, neighbour);
+				Edges.Add(newEdge);
+				newEdges.Add(newEdge);
 			}
 		}
+
+		return newEdges;
+	}
+
+	public ScarabEdge GetEdgeTo(ScarabNode neighbour)
+	{
+		return Edges.Find(x => x.HasNodes(neighbour, this));
+	}
+
+	public bool HasUnmarkedEdge()
+	{
+		return Edges.Find(x => x.IsMarked == false) != null;
+	}
+
+	public void OnClick()
+	{
+		nodeClicked?.Invoke(this);
+	}
+
+	private void OnEnable()
+	{
+		Edges.Clear();
+
+		if (Application.isPlaying == false)
+		{
+			AssignEdges();
+		}
+
+		View = GetComponent<ScarabView>();
 	}
 }
