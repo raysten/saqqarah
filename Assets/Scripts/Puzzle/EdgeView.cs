@@ -48,8 +48,8 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 		if ((currentEndPosition - _endPosition).sqrMagnitude > _minVertexDistanceSqaured)
 		{
 			_lineRend.SetPosition(1,
-				currentEndPosition + _direction * Time.deltaTime *
-				_settings.animationSpeed * _nodeDistanceSquared / _settings.standardNodeDistanceSquared);
+				currentEndPosition + _direction * Time.deltaTime * _settings.animationSpeed *
+				_nodeDistanceSquared / (_settings.standardNodeDistance * _settings.standardNodeDistance));
 		}
 		else
 		{
@@ -66,6 +66,6 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 	public class Settings
 	{
 		public float animationSpeed = 2f;
-		public float standardNodeDistanceSquared = 3f;
+		public float standardNodeDistance = 1.5f;
 	}
 }
