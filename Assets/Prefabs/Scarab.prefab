@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7000089647784246732}
   - component: {fileID: 7000089647784246735}
   - component: {fileID: 7000089647784246730}
+  - component: {fileID: 177073617515299228}
   m_Layer: 8
   m_Name: Scarab
   m_TagString: Untagged
@@ -110,6 +111,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _neighbours: []
+--- !u!114 &177073617515299228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000089647784246734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 087da67b6eda9bc46920083dd26bba7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _defaultSprite: {fileID: -2869631701027221602, guid: 8a29f259b22ffb8409ab9312b54c2858,
     type: 3}
   _markedSprite: {fileID: 3162544878287229053, guid: 8a29f259b22ffb8409ab9312b54c2858,
