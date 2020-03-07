@@ -41,8 +41,8 @@ public class PlayerTargeter : IInitializable, IDisposable
 			_settings.leftClickDetectionLayer)
 		)
 		{
-			ScarabView node = hitInfo.transform.GetComponent<ScarabView>();
-			node?.Mark();
+			ScarabNode node = hitInfo.transform.GetComponent<ScarabNode>();
+			node?.OnClick();
 		}
 	}
 
