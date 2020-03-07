@@ -6,12 +6,15 @@ using Zenject;
 public class PuzzleController : IInitializable, IDisposable
 {
 	private List<ScarabNode> _nodes;
+	private EdgeDrawer _drawer;
+
 	private List<ScarabNode> _markedNodes = new List<ScarabNode>();
 	private ScarabNode _lastClickedNode = null;
 
-	public PuzzleController(List<ScarabNode> nodes)
+	public PuzzleController(List<ScarabNode> nodes, EdgeDrawer drawer)
 	{
 		_nodes = nodes;
+		_drawer = drawer;
 	}
 
 	#region Initialization and Disposal
@@ -48,6 +51,8 @@ public class PuzzleController : IInitializable, IDisposable
 		{
 			VisitNode(node);
 		}
+
+		// TODO: Check win condition.
 	}
 
 	private bool IsValidClick(ScarabNode node)
@@ -57,7 +62,16 @@ public class PuzzleController : IInitializable, IDisposable
 			return true;
 		}
 
-		return true; // TODO: Disallow marking through already used edge.
+		ScarabEdge edge = node.GetEdgeTo(_lastClickedNode);
+
+		if (edge != null && edge.IsMarked == false)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	private void VisitNode(ScarabNode node)
@@ -69,6 +83,9 @@ public class PuzzleController : IInitializable, IDisposable
 		else
 		{
 			ColorNode(node);
+			ScarabEdge edge = node.GetEdgeTo(_lastClickedNode);
+			edge.IsMarked = true;
+			_drawer.DrawEdge(_lastClickedNode, node);
 		}
 
 		node.Visited = true;

@@ -10,11 +10,14 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
 	private PlayerLookCamera.Settings _playerCamera;
 	[SerializeField]
 	private PlayerTargeter.Settings _targeter;
+	[SerializeField]
+	private EdgeView.Settings _edgeView;
 
 	public override void InstallBindings()
     {
 		Container.BindInstance(_playerMovement).AsSingle();
 		Container.BindInstance(_playerCamera).AsSingle();
 		Container.BindInstance(_targeter).AsSingle();
+		Container.BindInstance(_edgeView).AsSingle();
 	}
 }

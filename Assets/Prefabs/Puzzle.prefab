@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b8cb94aa51286749a6d837dcc99f23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _edgePrefab: {fileID: 2919548534442623934, guid: d4092fd6ea9b4614ba1d792158266843,
+    type: 3}
 --- !u!1001 &6432684476541660205
 PrefabInstance:
   m_ObjectHideFlags: 0
