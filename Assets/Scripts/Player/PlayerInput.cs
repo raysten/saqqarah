@@ -16,7 +16,7 @@ public class PlayerInput : ITickable
 	{
 		LeftMouseButtonDown = Input.GetMouseButtonDown(0);
 
-		if (LeftMouseButtonDown || Input.GetKeyDown(KeyCode.Space)) // TODO: remove space.
+		if (LeftMouseButtonDown || Input.GetKeyDown(KeyCode.Space)) // Using also space for development.
 		{
 			mouseLeftButtonPressed?.Invoke();
 		}

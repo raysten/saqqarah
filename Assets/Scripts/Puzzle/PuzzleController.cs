@@ -96,7 +96,6 @@ public class PuzzleController : IInitializable, IDisposable
 				_drawer.CancelLast();
 				_lastMarkedEdge.Reset();
 				_lastClickedNode.Reset();
-				//_lastClickedNode = _preLastClickedNode;
 				SetLastClickedNode(_preLastClickedNode);
 				_lastMarkedEdge = _preLastMarkedEdge;
 				_usedCancel = true;
@@ -132,29 +131,18 @@ public class PuzzleController : IInitializable, IDisposable
 	{
 		if (_lastClickedNode != null)
 		{
-			//ColorNode(node, true);
 			ScarabEdge edge = node.GetEdgeTo(_lastClickedNode);
 			edge.IsMarked = true;
 			_preLastMarkedEdge = _lastMarkedEdge;
 			_lastMarkedEdge = edge;
 			_drawer.DrawEdge(_lastClickedNode, node);
-			//_preLastClickedNode = _lastClickedNode;
 			SetPreLastClickedNode(_lastClickedNode);
 		}
 
 		node.Visited = true;
-		//_lastClickedNode = node;
 		SetLastClickedNode(node);
 		_usedCancel = false;
 	}
-
-	//private void ColorNode(ScarabNode node, bool isFirst = false)
-	//{
-	//	if (node.Visited == false)
-	//	{
-	//		node.View.Mark(isFirst);
-	//	}
-	//}
 
 	private void CheckWinCondition()
 	{
