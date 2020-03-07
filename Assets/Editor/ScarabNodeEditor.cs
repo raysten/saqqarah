@@ -31,6 +31,11 @@ public class ScarabNodeEditor : Editor
 
 		if (Selection.activeObject != null && Selection.activeObject.name == target.name)
 		{
+			Handles.color = Color.red;
+			Handles.CircleHandleCap(
+					0, owner.transform.position, owner.transform.rotation, 0.2f, EventType.Repaint);
+			Handles.color = Color.green;
+
 			foreach (ScarabNode neighbour in neighbours)
 			{
 				if (neighbour == null)

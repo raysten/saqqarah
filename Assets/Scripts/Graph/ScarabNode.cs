@@ -7,7 +7,6 @@ public class ScarabNode : MonoBehaviour
 	[SerializeField]
 	private List<ScarabNode> _neighbours;
 	
-
 	public List<ScarabNode> Neighbours => _neighbours;
 	public List<ScarabEdge> Edges { get; } = new List<ScarabEdge>();
 
@@ -18,6 +17,7 @@ public class ScarabNode : MonoBehaviour
 
 	private void OnEnable()
 	{
+		Edges.Clear();
 		AssignEdges();
 	}
 
