@@ -9,6 +9,7 @@ public class ScarabNode : MonoBehaviour
 
 	[SerializeField]
 	private List<ScarabNode> _neighbours;
+	private bool _isDisabled;
 	
 	public List<ScarabNode> Neighbours => _neighbours;
 	public List<ScarabEdge> Edges { get; } = new List<ScarabEdge>();
@@ -50,13 +51,21 @@ public class ScarabNode : MonoBehaviour
 
 	public void OnClick()
 	{
-		nodeClicked?.Invoke(this);
+		if (_isDisabled == false)
+		{
+			nodeClicked?.Invoke(this);	
+		}
 	}
 
 	public void Reset()
 	{
 		Visited = false;
 		View.Reset();
+	}
+
+	public void Disable()
+	{
+		_isDisabled = true;
 	}
 
 	private void OnEnable()

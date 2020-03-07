@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public class PuzzleInstaller : MonoInstaller
 {
 	[SerializeField]
 	private GameObject _edgePrefab;
+	[SerializeField]
+	private Text _messageBox;
 
 	public override void InstallBindings()
 	{
 		InstallPuzzle();
 		InstallNodes();
 		InstallEdges();
+		InstallMessages();
 	}
 
 	private void InstallPuzzle()
@@ -40,6 +44,12 @@ public class PuzzleInstaller : MonoInstaller
 				.FromComponentInNewPrefab(_edgePrefab)
 				.UnderTransform(transform)
 			);
+	}
+
+	private void InstallMessages()
+	{
+		Container.BindInterfacesAndSelfTo<PuzzleMessage>().AsSingle();
+		Container.BindInstance(_messageBox).AsCached();
 	}
 
 	public class EdgeMemoryPool : MonoPoolableMemoryPool<Vector3, Vector3, IMemoryPool, EdgeView>

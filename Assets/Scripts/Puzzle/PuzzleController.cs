@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 
 public class PuzzleController : IInitializable, IDisposable
@@ -9,16 +8,28 @@ public class PuzzleController : IInitializable, IDisposable
 	private EdgeDrawer _drawer;
 	private VictoryHandler _victory;
 	private EventBus _eventBus;
+	private PuzzleMessage _messages;
+	private PuzzleMessage.Settings _messageSettings;
 
 	private List<ScarabEdge> _edges = new List<ScarabEdge>();
 	private ScarabNode _lastClickedNode = null;
+	private int _attemptsCounter;
 
-	public PuzzleController(List<ScarabNode> nodes, EdgeDrawer drawer, VictoryHandler victory, EventBus eventBus)
+	public PuzzleController(
+		List<ScarabNode> nodes,
+		EdgeDrawer drawer,
+		VictoryHandler victory,
+		EventBus eventBus,
+		PuzzleMessage messages,
+		PuzzleMessage.Settings messageSettings
+	)
 	{
 		_nodes = nodes;
 		_drawer = drawer;
 		_victory = victory;
 		_eventBus = eventBus;
+		_messages = messages;
+		_messageSettings = messageSettings;
 	}
 
 	#region Initialization and Disposal
@@ -32,6 +43,7 @@ public class PuzzleController : IInitializable, IDisposable
 	{
 		UnsubscribeClick();
 		_eventBus.victoryScreenComplete -= OnVictoryScreenComplete;
+		_messages.messageTimedOut -= ResetPuzzle;
 	}
 
 	private void SubscribeClick()
@@ -137,9 +149,25 @@ public class PuzzleController : IInitializable, IDisposable
 			}
 			else
 			{
-				// TODO:
-				Debug.Log("LOSS");
+				HandleLoss();
 			}
+		}
+	}
+
+	private void HandleLoss()
+	{
+		_attemptsCounter++;
+
+		if (_attemptsCounter == 1)
+		{
+			_messages.DisplayMessage(_messageSettings.tryAgainMessage, 2f);
+			_messages.messageTimedOut += ResetPuzzle;
+		}
+		else
+		{
+			_messages.DisplayMessage(_messageSettings.lossMessage);
+			ResetPuzzle();
+			DisablePuzzle();
 		}
 	}
 
@@ -157,5 +185,13 @@ public class PuzzleController : IInitializable, IDisposable
 
 		_lastClickedNode = null;
 		_drawer.ClearAll();
+	}
+
+	private void DisablePuzzle()
+	{
+		foreach (ScarabNode node in _nodes)
+		{
+			node.Disable();
+		}
 	}
 }
