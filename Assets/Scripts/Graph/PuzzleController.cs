@@ -51,8 +51,11 @@ public class PuzzleController : IInitializable, IDisposable
 		{
 			VisitNode(node);
 		}
+		else
+		{
+			node.View.Shake();
+		}
 
-		// TODO: Add feedback when wrong click performed.
 		// TODO: Check win condition.
 	}
 

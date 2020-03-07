@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7000089647784246735}
   - component: {fileID: 7000089647784246730}
   - component: {fileID: 177073617515299228}
+  - component: {fileID: 780405040752240029}
   m_Layer: 8
   m_Name: Scarab
   m_TagString: Untagged
@@ -129,3 +130,22 @@ MonoBehaviour:
     type: 3}
   _firstMarkedSprite: {fileID: -3256550070644474676, guid: 8a29f259b22ffb8409ab9312b54c2858,
     type: 3}
+--- !u!95 &780405040752240029
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000089647784246734}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c2de4684cfdf6d4399b71560617ac8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+
 public class EdgeDrawer
 {
 	private EdgeView.Factory _edgeFactory;
+	private List<EdgeView> _edges = new List<EdgeView>();
 
 	public EdgeDrawer(EdgeView.Factory edgeFactory)
 	{
@@ -9,6 +12,6 @@ public class EdgeDrawer
 
 	public void DrawEdge(ScarabNode start, ScarabNode end)
 	{
-		_edgeFactory.Create(start.transform.position, end.transform.position);
+		_edges.Add(_edgeFactory.Create(start.transform.position, end.transform.position));
 	}
 }

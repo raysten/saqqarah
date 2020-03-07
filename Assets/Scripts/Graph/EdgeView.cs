@@ -15,7 +15,6 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 	private Vector3 _endPosition;
 	private Vector3 _direction;
 	private float _minVertexDistanceSqaured = 0.1f;
-	private bool _isComplete;
 
 	public void Dispose()
 	{
@@ -26,12 +25,12 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 	{
 		_pool = null;
 		_lineRend.positionCount = 0;
-		_isComplete = false;
 	}
 
 	public void OnSpawned(Vector3 startPosition, Vector3 endPosition, IMemoryPool pool)
 	{
 		_pool = pool;
+		enabled = true;
 		_lineRend.positionCount = 2;
 		_lineRend.SetPosition(0, startPosition);
 		_lineRend.SetPosition(1, startPosition);
@@ -42,11 +41,6 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 
 	private void Update()
 	{
-		if (_isComplete)
-		{
-			return;
-		}
-
 		Vector3 currentEndPosition = _lineRend.GetPosition(1);
 
 		if ((currentEndPosition - _endPosition).sqrMagnitude > _minVertexDistanceSqaured)
@@ -56,7 +50,7 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 		else
 		{
 			_lineRend.SetPosition(1, _endPosition);
-			_isComplete = true;
+			enabled = false;
 		}
 	}
 

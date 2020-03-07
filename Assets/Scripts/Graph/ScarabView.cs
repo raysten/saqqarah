@@ -9,22 +9,29 @@ public class ScarabView : MonoBehaviour
 	[SerializeField]
 	private Sprite _firstMarkedSprite;
 
-	private SpriteRenderer img;
+	private SpriteRenderer _img;
+	private Animator _anmtr;
 
 	public void Mark(bool isFirst = false)
 	{
 		if (isFirst)
 		{
-			img.sprite = _firstMarkedSprite;
+			_img.sprite = _firstMarkedSprite;
 		}
 		else
 		{
-			img.sprite = _markedSprite;
+			_img.sprite = _markedSprite;
 		}
+	}
+
+	public void Shake()
+	{
+		_anmtr.Play("scarab_missclick");
 	}
 
 	private void Awake()
 	{
-		img = GetComponent<SpriteRenderer>();
+		_img = GetComponent<SpriteRenderer>();
+		_anmtr = GetComponent<Animator>();
 	}
 }
