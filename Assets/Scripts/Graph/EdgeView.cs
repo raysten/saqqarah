@@ -19,7 +19,7 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 
 	public void Dispose()
 	{
-		_pool.Despawn(this);
+		_pool?.Despawn(this);
 	}
 
 	public void OnDespawned()

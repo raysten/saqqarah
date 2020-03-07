@@ -7,12 +7,22 @@ public class PlayerTargeter : IInitializable, IDisposable
 {
 	private Camera _cam;
 	private PlayerInput _input;
+	private EventBus _eventBus;
+	private Image _aim;
 	private Settings _settings;
 
-	public PlayerTargeter(Camera cam, PlayerInput input, Settings settings)
+	public PlayerTargeter(
+		Camera cam,
+		PlayerInput input,
+		EventBus eventBus,
+		Image aim,
+		Settings settings
+	)
 	{
 		_cam = cam;
 		_input = input;
+		_eventBus = eventBus;
+		_aim = aim;
 		_settings = settings;
 	}
 
@@ -23,11 +33,15 @@ public class PlayerTargeter : IInitializable, IDisposable
 #endif
 		Cursor.visible = false;
 		_input.mouseLeftButtonPressed += OnLeftClick;
+		_eventBus.puzzleWon += OnPuzzleWon;
+		_eventBus.victoryScreenComplete += OnVictoryScreenComplete;
 	}
 
 	public void Dispose()
 	{
 		_input.mouseLeftButtonPressed -= OnLeftClick;
+		_eventBus.puzzleWon -= OnPuzzleWon;
+		_eventBus.victoryScreenComplete -= OnVictoryScreenComplete;
 	}
 
 	private void OnLeftClick()
@@ -44,6 +58,18 @@ public class PlayerTargeter : IInitializable, IDisposable
 			ScarabNode node = hitInfo.transform.GetComponent<ScarabNode>();
 			node?.OnClick();
 		}
+	}
+
+	private void OnPuzzleWon()
+	{
+		_input.mouseLeftButtonPressed -= OnLeftClick;
+		_aim.enabled = false;
+	}
+
+	private void OnVictoryScreenComplete()
+	{
+		_input.mouseLeftButtonPressed += OnLeftClick;
+		_aim.enabled = true;
 	}
 
 	[Serializable]

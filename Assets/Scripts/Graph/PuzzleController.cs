@@ -7,16 +7,18 @@ public class PuzzleController : IInitializable, IDisposable
 {
 	private List<ScarabNode> _nodes;
 	private EdgeDrawer _drawer;
-	private ParticleSystem _winVfx;
+	private VictoryHandler _victory;
+	private EventBus _eventBus;
 
 	private List<ScarabEdge> _edges = new List<ScarabEdge>();
 	private ScarabNode _lastClickedNode = null;
 
-	public PuzzleController(List<ScarabNode> nodes, EdgeDrawer drawer, ParticleSystem winVfx)
+	public PuzzleController(List<ScarabNode> nodes, EdgeDrawer drawer, VictoryHandler victory, EventBus eventBus)
 	{
 		_nodes = nodes;
 		_drawer = drawer;
-		_winVfx = winVfx;
+		_victory = victory;
+		_eventBus = eventBus;
 	}
 
 	#region Initialization and Disposal
@@ -29,6 +31,7 @@ public class PuzzleController : IInitializable, IDisposable
 	public void Dispose()
 	{
 		UnsubscribeClick();
+		_eventBus.victoryScreenComplete -= OnVictoryScreenComplete;
 	}
 
 	private void SubscribeClick()
@@ -45,6 +48,12 @@ public class PuzzleController : IInitializable, IDisposable
 		{
 			node.nodeClicked -= OnNodeClicked;
 		}
+	}
+
+	private void OnVictoryScreenComplete()
+	{
+		ResetPuzzle();
+		_eventBus.victoryScreenComplete -= OnVictoryScreenComplete;
 	}
 	#endregion
 
@@ -121,15 +130,32 @@ public class PuzzleController : IInitializable, IDisposable
 		{
 			ScarabEdge anyUnmarkedEdge = _edges.Find(x => x.IsMarked == false);
 
-			// TODO:
 			if (anyUnmarkedEdge == null)
 			{
-				_winVfx.Play();
+				_eventBus.puzzleWon?.Invoke();
+				_eventBus.victoryScreenComplete += OnVictoryScreenComplete;
 			}
 			else
 			{
+				// TODO:
 				Debug.Log("LOSS");
 			}
 		}
+	}
+
+	private void ResetPuzzle()
+	{
+		foreach (ScarabNode node in _nodes)
+		{
+			node.Reset();
+		}
+
+		foreach (ScarabEdge edge in _edges)
+		{
+			edge.Reset();
+		}
+
+		_lastClickedNode = null;
+		_drawer.ClearAll();
 	}
 }

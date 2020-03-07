@@ -14,4 +14,9 @@ public class ScarabEdge
 	{
 		return (First == node1 && Second == node2) || (First == node2 && Second == node1);
 	}
+
+	public void Reset()
+	{
+		IsMarked = false;
+	}
 }

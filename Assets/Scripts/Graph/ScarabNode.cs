@@ -53,6 +53,12 @@ public class ScarabNode : MonoBehaviour
 		nodeClicked?.Invoke(this);
 	}
 
+	public void Reset()
+	{
+		Visited = false;
+		View.Reset();
+	}
+
 	private void OnEnable()
 	{
 		Edges.Clear();

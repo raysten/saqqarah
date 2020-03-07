@@ -14,4 +14,12 @@ public class EdgeDrawer
 	{
 		_edges.Add(_edgeFactory.Create(start.transform.position, end.transform.position));
 	}
+
+	public void ClearAll()
+	{
+		foreach (EdgeView edge in _edges)
+		{
+			edge.Dispose();
+		}
+	}
 }

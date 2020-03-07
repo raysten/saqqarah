@@ -29,6 +29,11 @@ public class ScarabView : MonoBehaviour
 		_anmtr.Play("scarab_missclick");
 	}
 
+	public void Reset()
+	{
+		_img.sprite = _defaultSprite;
+	}
+
 	private void Awake()
 	{
 		_img = GetComponent<SpriteRenderer>();
