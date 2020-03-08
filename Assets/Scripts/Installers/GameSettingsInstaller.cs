@@ -13,6 +13,8 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
 	[SerializeField]
 	private EdgeView.Settings _edgeView;
 	[SerializeField]
+	private ScarabView.Settings _scarabView;
+	[SerializeField]
 	private PuzzleMessage.Settings _messages;
 
 	public override void InstallBindings()
@@ -21,6 +23,7 @@ public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInsta
 		Container.BindInstance(_playerCamera).AsSingle();
 		Container.BindInstance(_targeter).AsSingle();
 		Container.BindInstance(_edgeView).AsSingle();
+		Container.BindInstance(_scarabView).AsSingle();
 		Container.BindInstance(_messages).AsSingle();
 	}
 }

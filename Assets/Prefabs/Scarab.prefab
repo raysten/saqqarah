@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a5e097467256ad9408bcaee0e7ae201a, type: 2}
+  - {fileID: 2100000, guid: e88f5fac12798ad40b7b80929b4c6955, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,6 +155,9 @@ MonoBehaviour:
   _defaultMaterial: {fileID: 2100000, guid: a5e097467256ad9408bcaee0e7ae201a, type: 2}
   _blueMaterial: {fileID: 2100000, guid: 37390c096cf8cae4888689b9bdfd18b2, type: 2}
   _goldenMaterial: {fileID: 2100000, guid: f738b5db85aaeee44951a5e861e0cc97, type: 2}
+  _brownTexture: {fileID: 2800000, guid: 6267eb63a7f67ed4cb310d2c04be1999, type: 3}
+  _blueTexture: {fileID: 2800000, guid: ea5d3230d96a7ac408515cf7237969b0, type: 3}
+  _goldTexture: {fileID: 2800000, guid: 39cf1ec48cb799546b67728a3b7faa1d, type: 3}
 --- !u!95 &780405040752240029
 Animator:
   serializedVersion: 3

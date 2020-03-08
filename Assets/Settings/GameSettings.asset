@@ -26,4 +26,9 @@ MonoBehaviour:
     raycastDistance: 100
   _edgeView:
     animationSpeed: 6
-    standardNodeDistanceSquared: 3
+    standardNodeDistance: 1.5
+  _scarabView:
+    blendSpeed: 2
+  _messages:
+    tryAgainMessage: Try again
+    lossMessage: Puzzle lost
