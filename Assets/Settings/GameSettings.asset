@@ -18,7 +18,7 @@ MonoBehaviour:
   _playerCamera:
     mouseXSensitivity: 40
     mouseYSensitivity: 40
-    verticalClamp: 30
+    verticalClamp: 50
   _targeter:
     leftClickDetectionLayer:
       serializedVersion: 2

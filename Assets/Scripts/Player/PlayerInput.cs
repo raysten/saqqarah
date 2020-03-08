@@ -15,8 +15,13 @@ public class PlayerInput : ITickable
 	public void Tick()
 	{
 		LeftMouseButtonDown = Input.GetMouseButtonDown(0);
+		bool debugSpace = false;
 
-		if (LeftMouseButtonDown || Input.GetKeyDown(KeyCode.Space)) // Using also space for development.
+#if UNITY_EDITOR
+		debugSpace = Input.GetKeyDown(KeyCode.Space);
+#endif
+
+		if (LeftMouseButtonDown || debugSpace)
 		{
 			mouseLeftButtonPressed?.Invoke();
 		}
