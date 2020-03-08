@@ -13,7 +13,7 @@ public class EdgeDrawer
 
 	public void DrawEdge(ScarabNode start, ScarabNode end)
 	{
-		EdgeView edge = _edgeFactory.Create(start.transform.position, end.transform.position);
+		EdgeView edge = _edgeFactory.Create(start.transform.position, end.transform.position, end.View);
 		_edges.Add(edge);
 		_lastEdge = edge;
 	}

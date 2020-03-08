@@ -37,8 +37,8 @@ public class PuzzleInstaller : MonoInstaller
 	private void InstallEdges()
 	{
 		Container.BindInterfacesAndSelfTo<EdgeDrawer>().AsSingle();
-		Container.BindFactory<Vector3, Vector3, EdgeView, EdgeView.Factory>()
-			.FromPoolableMemoryPool<Vector3, Vector3, EdgeView, EdgeMemoryPool>(x => x
+		Container.BindFactory<Vector3, Vector3, ScarabView, EdgeView, EdgeView.Factory>()
+			.FromPoolableMemoryPool<Vector3, Vector3, ScarabView, EdgeView, EdgeMemoryPool>(x => x
 				.WithInitialSize(30)
 				.ExpandByDoubling()
 				.FromComponentInNewPrefab(_edgePrefab)
@@ -52,7 +52,7 @@ public class PuzzleInstaller : MonoInstaller
 		Container.BindInstance(_messageBox).AsCached();
 	}
 
-	public class EdgeMemoryPool : MonoPoolableMemoryPool<Vector3, Vector3, IMemoryPool, EdgeView>
+	public class EdgeMemoryPool : MonoPoolableMemoryPool<Vector3, Vector3, ScarabView, IMemoryPool, EdgeView>
 	{
 	}
 }

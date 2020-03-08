@@ -137,10 +137,14 @@ public class PuzzleController : IInitializable, IDisposable
 			_lastMarkedEdge = edge;
 			_drawer.DrawEdge(_lastClickedNode, node);
 			SetPreLastClickedNode(_lastClickedNode);
+			SetLastClickedNode(node, false);
+		}
+		else
+		{
+			SetLastClickedNode(node);
 		}
 
 		node.Visited = true;
-		SetLastClickedNode(node);
 		_usedCancel = false;
 	}
 
@@ -161,10 +165,14 @@ public class PuzzleController : IInitializable, IDisposable
 		}
 	}
 
-	private void SetLastClickedNode(ScarabNode node)
+	private void SetLastClickedNode(ScarabNode node, bool mark = true)
 	{
 		_lastClickedNode = node;
-		_lastClickedNode.View.Mark(true);
+
+		if (mark)
+		{
+			_lastClickedNode.View.Mark(true);
+		}
 	}
 
 	private void SetPreLastClickedNode(ScarabNode node)

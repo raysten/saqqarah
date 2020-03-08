@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>, IDisposable
+public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, ScarabView, IMemoryPool>, IDisposable
 {
 	[SerializeField]
 	private LineRenderer _lineRend;
@@ -13,6 +13,7 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 	private IMemoryPool _pool;
 	private Vector3 _startPosition;
 	private Vector3 _endPosition;
+	private ScarabView _view;
 	private Vector3 _direction;
 	private float _minVertexDistanceSqaured = 0.1f;
 	private float _nodeDistanceSquared;
@@ -28,13 +29,14 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 		_lineRend.positionCount = 0;
 	}
 
-	public void OnSpawned(Vector3 startPosition, Vector3 endPosition, IMemoryPool pool)
+	public void OnSpawned(Vector3 startPosition, Vector3 endPosition, ScarabView view, IMemoryPool pool)
 	{
 		_pool = pool;
 		enabled = true;
 		_lineRend.positionCount = 2;
 		_lineRend.SetPosition(0, startPosition);
 		_lineRend.SetPosition(1, startPosition);
+		_view = view;
 		_direction = (endPosition - startPosition).normalized;
 		_nodeDistanceSquared = (endPosition - startPosition).sqrMagnitude;
 		_startPosition = startPosition;
@@ -54,11 +56,12 @@ public class EdgeView : MonoBehaviour, IPoolable<Vector3, Vector3, IMemoryPool>,
 		else
 		{
 			_lineRend.SetPosition(1, _endPosition);
+			_view.Mark(true);
 			enabled = false;
 		}
 	}
 
-	public class Factory : PlaceholderFactory<Vector3, Vector3, EdgeView>
+	public class Factory : PlaceholderFactory<Vector3, Vector3, ScarabView, EdgeView>
 	{
 	}
 
