@@ -152,9 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 087da67b6eda9bc46920083dd26bba7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultMaterial: {fileID: 2100000, guid: a5e097467256ad9408bcaee0e7ae201a, type: 2}
-  _blueMaterial: {fileID: 2100000, guid: 37390c096cf8cae4888689b9bdfd18b2, type: 2}
-  _goldenMaterial: {fileID: 2100000, guid: f738b5db85aaeee44951a5e861e0cc97, type: 2}
   _brownTexture: {fileID: 2800000, guid: 6267eb63a7f67ed4cb310d2c04be1999, type: 3}
   _blueTexture: {fileID: 2800000, guid: ea5d3230d96a7ac408515cf7237969b0, type: 3}
   _goldTexture: {fileID: 2800000, guid: 39cf1ec48cb799546b67728a3b7faa1d, type: 3}
