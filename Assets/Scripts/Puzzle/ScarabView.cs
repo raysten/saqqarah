@@ -3,24 +3,24 @@ using UnityEngine;
 public class ScarabView : MonoBehaviour
 {
 	[SerializeField]
-	private Sprite _defaultSprite;
+	private Material _defaultMaterial;
 	[SerializeField]
-	private Sprite _markedSprite;
+	private Material _blueMaterial;
 	[SerializeField]
-	private Sprite _lastMarkedSprite;
+	private Material _goldenMaterial;
 
-	private SpriteRenderer _img;
+	private MeshRenderer _renderer;
 	private Animator _anmtr;
 
 	public void Mark(bool isLast = false)
 	{
 		if (isLast)
 		{
-			_img.sprite = _lastMarkedSprite;
+			_renderer.sharedMaterial = _goldenMaterial;
 		}
 		else
 		{
-			_img.sprite = _markedSprite;
+			_renderer.sharedMaterial = _blueMaterial;
 		}
 	}
 
@@ -31,12 +31,12 @@ public class ScarabView : MonoBehaviour
 
 	public void Reset()
 	{
-		_img.sprite = _defaultSprite;
+		_renderer.sharedMaterial = _defaultMaterial;
 	}
 
 	private void Awake()
 	{
-		_img = GetComponent<SpriteRenderer>();
+		_renderer = GetComponentInChildren<MeshRenderer>();
 		_anmtr = GetComponent<Animator>();
 	}
 }
