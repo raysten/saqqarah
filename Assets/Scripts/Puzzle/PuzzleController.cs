@@ -152,8 +152,7 @@ public class PuzzleController : IInitializable, IDisposable
 
 			if (anyUnmarkedEdge == null)
 			{
-				_eventBus.puzzleWon?.Invoke();
-				_eventBus.victoryScreenComplete += OnVictoryScreenComplete;
+				HandleWin();
 			}
 			else
 			{
@@ -172,6 +171,17 @@ public class PuzzleController : IInitializable, IDisposable
 	{
 		_preLastClickedNode = node;
 		_preLastClickedNode.View.Mark();
+	}
+
+	private void HandleWin()
+	{
+		_eventBus.puzzleWon?.Invoke();
+		_eventBus.victoryScreenComplete += OnVictoryScreenComplete;
+
+		foreach (ScarabNode node in _nodes)
+		{
+			node.View.Mark(true);
+		}
 	}
 
 	private void HandleLoss()
