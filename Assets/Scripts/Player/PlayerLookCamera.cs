@@ -21,11 +21,11 @@ public class PlayerLookCamera : ITickable
 
 	public void Tick()
 	{
-		_xRotation -= _input.MouseY * Time.deltaTime * _settings.mouseYSensitivity;
+		_xRotation -= _input.MouseY * _settings.mouseYSensitivity;
 		_xRotation = Mathf.Clamp(_xRotation, -_settings.verticalClamp, _settings.verticalClamp);
 		_cam.transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
 
-		_transform.Rotate(Vector3.up * _input.MouseX * Time.deltaTime * _settings.mouseXSensitivity);
+		_transform.Rotate(Vector3.up * _input.MouseX * _settings.mouseXSensitivity);
 	}
 
 	[Serializable]

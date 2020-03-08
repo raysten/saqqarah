@@ -16,8 +16,8 @@ MonoBehaviour:
     forwardSpeed: 4
     sideSpeed: 8
   _playerCamera:
-    mouseXSensitivity: 40
-    mouseYSensitivity: 40
+    mouseXSensitivity: 1
+    mouseYSensitivity: 1
     verticalClamp: 50
   _targeter:
     leftClickDetectionLayer:
